@@ -61,4 +61,23 @@ function checkName() {
             
                 return res;
             }
-            
+
+            //4
+
+
+            function password(userInfo) {
+    if (!userInfo.name || !userInfo.birthYear || !userInfo.siteName) {
+        return "invalid"; 
+    }
+
+    if (typeof userInfo.birthYear !== 'number' || userInfo.birthYear.toString().length !==  4) {
+        return "invalid"; 
+    }
+
+          const { name, birthYear, siteName } = userInfo;
+    return `${capitalize(siteName)}#${name}@${birthYear}`;
+}
+
+function capitalize(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+}
