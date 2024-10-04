@@ -81,3 +81,38 @@ function checkName() {
 function capitalize(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
 }
+
+
+
+// monthlySavings
+
+function monthlySavings(payments, livingCost) {
+    
+    if (!Array.isArray(payments) || typeof livingCost !== 'number') {
+        return "invalid input";
+    }
+
+    const totalPayments = payments.reduce((acc, curr) => {
+        if (typeof curr !== 'number') {
+            return NaN; 
+        }
+        return acc + curr;
+    }, 0);
+
+    
+    if (isNaN(totalPayments)) {
+        return "invalid input";
+    }
+
+    
+    const savings = totalPayments - livingCost;
+
+    
+    if (savings > 0) {
+        return savings;
+    } else {
+        return "earn more";
+    }
+}
+
+console.log(monthlySavings([1000, 2000, 3000], 5400));  
