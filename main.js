@@ -48,3 +48,17 @@ function checkName() {
     }
 }
             document.getElementById('checkNameBtn').addEventListener('click', checkName);
+
+
+            //3
+
+            function deleteInvalids(inputArray) {
+                if (!Array.isArray(inputArray)) {
+                    return "Invalid input, expected an array";
+                }
+            
+                const res = inputArray.filter(item => !isNaN(item) && item !== undefined && item !== null);
+            
+                return res;
+            }
+            
