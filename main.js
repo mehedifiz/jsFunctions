@@ -15,52 +15,61 @@ function calculateMoney(ticketSale) {
     const result = totalRevenue - totalSalary;
     return result;
 }
-document.getElementById('calculateBtn').addEventListener('click', function() {
-    const ticketSale = parseInt(document.getElementById('ticketSale').value);
-    const resultElement = document.getElementById('result');
+
     
-    const result = calculateMoney(ticketSale);
-    resultElement.textContent = `Remaining money: ${result} Taka`;
-});
+ 
+;
 
 
 
 //checkName
-function checkName() {
-    const name = document.getElementById('nameInput').value;
-    const nameResultElement = document.getElementById('nameResult');
-
-    if (typeof name !== 'string' || !/^[a-zA-Z]+$/.test(name)) {
-        nameResultElement.textContent = "invalid"; 
-        return; 
+function checkName(name){
+    if(typeof name !== "string"){
+        return 'invalid';
     }
-
-    const lowerName = name.toLowerCase();
-    const badEndings = ['a', 'y', 'i', 'e', 'o', 'u', 'w'];
-    const lastChar = lowerName.charAt(lowerName.length - 1);
-
-    if(badEndings.includes(lastChar)) {
-        nameResultElement.textContent = "Bad Name"; 
-    }
-    
-    else {
-    nameResultElement.textContent = "Good Name"; 
+    else{
+        const check = name.toLowerCase();
+        const last = check.slice(-1);
+        if(last === 'a' || last === 'y' || last === 'i' || last === 'e' || last === 'o' || last === 'u' || last === 'w'){
+            return 'Good Name';
+        }
+        return 'Bad Name' ;
     }
 }
-            document.getElementById('checkNameBtn').addEventListener('click', checkName);
+
+const name1 = checkName('Salman');
+console.log(name1);
+const name2 = checkName('RAFEE');
+console.log(name2);
+const name3 = checkName('Jhankar');
+console.log(name3);
+const name4 = checkName(199);
+console.log(name4);
+const name5 = checkName(["Rashed"]);
+console.log(name5);
+
 
 
             //3
 
             function deleteInvalids(inputArray) {
-                if (!Array.isArray(inputArray)) {
-                    return "Invalid input, expected an array";
+     if (!Array.isArray(inputArray)) {
+                    return "please input  an array";
                 }
             
-                const res = inputArray.filter(item => !isNaN(item) && item !== undefined && item !== null);
+                const res = inputArray.filter(item => !isNaN(item) && item !== undefined && item !== null && typeof item === 'number');
             
                 return res;
             }
+
+ const inputArray =['1' , {num:2} , NaN ] ;
+const result = deleteInvalids(inputArray);
+
+console.log('delete inalids console',result);    
+
+
+
+
 
             //4
 
@@ -92,11 +101,11 @@ function monthlySavings(payments, livingCost) {
         return "invalid input";
     }
 
-    const totalPayments = payments.reduce((acc, curr) => {
-        if (typeof curr !== 'number') {
+    const totalPayments = payments.reduce((sum, value) => {
+        if (typeof value !== 'number') {
             return NaN; 
         }
-        return acc + curr;
+        return sum + value;
     }, 0);
 
     
@@ -115,4 +124,4 @@ function monthlySavings(payments, livingCost) {
     }
 }
 
-console.log(monthlySavings([1000, 2000, 3000], 5400));  
+console.log('sd',monthlySavings([900, 2700, 3700], 10000)); 
